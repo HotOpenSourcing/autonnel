@@ -1,6 +1,6 @@
 {
   "name": "autonnel",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Autonnel - Open-source AI-native funnel builder for e-commerce",
   "license": "Apache-2.0",
   "repository": {
@@ -124,14 +124,14 @@
   ],
   "scripts": {
     "clean:cache": "node scripts/clean-cache.mjs",
-    "dev": "npm run clean:cache && npx prisma generate && astro dev",
-    "build": "npx prisma generate && astro build && node scripts/build-package.mjs",
-    "start": "node ./dist/server/entry.mjs",
-    "build:package": "node scripts/build-package.mjs",
+    "dev": "node init && npm run clean:cache && npx prisma generate && astro dev",
+    "build": "node init && npx prisma generate && astro build && node scripts/build-package.mjs",
+    "start": "node init && node ./dist/server/entry.mjs",
+    "build:package": "node init && node scripts/build-package.mjs",
     "prepublishOnly": "npm run build:package",
     "generate:wrangler": "node scripts/generate-wrangler.mjs",
-    "build:cf": "node scripts/build-cf.mjs",
-    "dev:cf": "npm run clean:cache && npx prisma generate && astro dev --config astro.config.cloudflare.mjs",
+    "build:cf": "node init && node scripts/build-cf.mjs",
+    "dev:cf": "node init && npm run clean:cache && npx prisma generate && astro dev --config astro.config.cloudflare.mjs",
     "preview:cf": "npm run build:cf && wrangler dev",
     "deploy:cf": "npm run build:cf && wrangler deploy",
     "db:push": "npx prisma db push",
